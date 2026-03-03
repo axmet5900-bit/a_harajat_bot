@@ -1,7 +1,7 @@
 import os
 import asyncio
 import logging
-from aiogram import Bot, Dispatcher, types, F
+from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from dotenv import load_dotenv
 
@@ -15,22 +15,18 @@ dp = Dispatcher()
 
 @dp.message(Command("start"))
 async def start(message: types.Message):
-    await message.answer(
-        "👋 Xush kelibsiz! Xarajat botiga xush kelibsiz.\n\n"
-        "📝 Misol: 'Taksi 15000' yoki 'Ali 50000 qarz'"
-    )
+    await message.answer("Assalomu alaykum! Bot ishlayapti ✅")
 
 @dp.message(Command("stats"))
 async def stats(message: types.Message):
-    await message.answer("📊 Statistika tayyorlanmoqda...")
+    await message.answer("Statistika tayyorlanmoqda...")
 
-@dp.message(F.text)
-async def handle_text(message: types.Message):
-    text = message.text
-    await message.answer(f"Siz yozdingiz: {text}")
+@dp.message()
+async def echo(message: types.Message):
+    await message.answer(f"Siz yozdingiz: {message.text}")
 
 async def main():
-    print("Bot ishga tushdi!")
+    print("✅ Bot ishga tushdi!")
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
